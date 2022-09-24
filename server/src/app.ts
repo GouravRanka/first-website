@@ -3,10 +3,8 @@ import  express from 'express';
 import  fs from 'fs'
 import cors from 'cors'
 import UserModel from './modals/UserSchema';
-// import data from '../data';
-
-
-
+import connection from './database/schema/database';
+import getAllProducts from './controllers/productController';
 
 
 const app = express();
@@ -20,9 +18,9 @@ const server = app.listen(port, () => {
     console.log("server started on ", port);
 })
 // get product data 
-app.get('/getProductData', (req,res) => {
-// res.send(data)
-})
+app.get('/getAllProducts',getAllProducts)
+
+connection();
 
 // add a user 
 app.post('/add_user', (req: Request, res: Response) => {
